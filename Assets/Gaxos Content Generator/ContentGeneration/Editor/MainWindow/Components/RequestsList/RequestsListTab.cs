@@ -44,9 +44,9 @@ namespace ContentGeneration.Editor.MainWindow.Components.RequestsList
 
         IRequestedItem[] allRequestedItems => new[]
         {
-            defaultRequestedItem, 
+            defaultRequestedItem,
             meshyTextToMeshRequestedItem, meshyTextToTextureRequestedItem,
-            meshyTextToVoxelRequestedItem, meshyImageToMeshRequestedItem, 
+            meshyTextToVoxelRequestedItem, meshyImageToMeshRequestedItem,
             stabilityFast3dRequestedItem,
             elevenLabSoundRequestedItem
         };
@@ -134,8 +134,8 @@ namespace ContentGeneration.Editor.MainWindow.Components.RequestsList
             listView.columns["creditsCost"].bindCell = (element, index) =>
             {
                 var label = (element as Label)!;
-                label.text = 
-                    (ContentGenerationStore.Instance.Requests[index].DeductedSubscriptionCredits + 
+                label.text =
+                    (ContentGenerationStore.Instance.Requests[index].DeductedSubscriptionCredits +
                      ContentGenerationStore.Instance.Requests[index].DeductedTopupCredits)
                     .ToString(CultureInfo.InvariantCulture);
             };
@@ -185,6 +185,20 @@ namespace ContentGeneration.Editor.MainWindow.Components.RequestsList
                                 ? meshyTextToMeshRequestedItem
                                 : stabilityFast3dRequestedItem)
                             .Save(downloadRequest)
+                            .ContinueInMainThreadWith(t =>
+                            {
+                                if (t.IsFaulted)
+                                {
+                                    Debug.LogException(t.Exception!.InnerException);
+                                }
+
+                                button.RemoveFromClassList("disabled");
+                                button.SetEnabled(true);
+                            });
+                    }
+                    else if (downloadRequest.Generator is Generator.ElevenLabsSound or Generator.ElevenLabsTextToSpeech)
+                    {
+                        elevenLabSoundRequestedItem.Save(downloadRequest)
                             .ContinueInMainThreadWith(t =>
                             {
                                 if (t.IsFaulted)

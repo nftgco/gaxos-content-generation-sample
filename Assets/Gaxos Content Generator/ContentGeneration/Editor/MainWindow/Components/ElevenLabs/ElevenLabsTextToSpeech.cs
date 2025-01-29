@@ -121,7 +121,7 @@ namespace ContentGeneration.Editor.MainWindow.Components.ElevenLabs
 
         void VoiceIdHasChanged(ChangeEvent<string> evt)
         {
-            generateButton.SetEnabled(voiceId.index > 0);
+            generateButton.SetEnabled(voiceId.index >= 0);
             RefreshCode();
         }
 
