@@ -1,15 +1,25 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Gaxos%20Content%20Generator/ContentGeneration/Editor/MainWindow/Components/Common.uss?fileID=7433441132597879392&amp;guid=4c0a09080b844861802367d6e07fa07b&amp;type=3#Common" />
-    <Style src="project://database/Assets/Gaxos%20Content%20Generator/ContentGeneration/Editor/MainWindow/Components/RequestsList/RequestedItemCommon.uss?fileID=7433441132597879392&amp;guid=e0bcc31d369374816b900e6a1daa74b2&amp;type=3#RequestedItemCommon" />
-    <ContentGeneration.Editor.MainWindow.Components.SubWindow name="requestedItem" Sub-Window-Name="??" style="flex-grow: 1;">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         xsi="http://www.w3.org/2001/XMLSchema-instance" editor="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style
+        src="project://database/Assets/Gaxos%20Content%20Generator/ContentGeneration/Editor/MainWindow/Components/Common.uss?fileID=7433441132597879392&amp;guid=4c0a09080b844861802367d6e07fa07b&amp;type=3#Common" />
+    <Style
+        src="project://database/Assets/Gaxos%20Content%20Generator/ContentGeneration/Editor/MainWindow/Components/RequestsList/RequestedItemCommon.uss?fileID=7433441132597879392&amp;guid=e0bcc31d369374816b900e6a1daa74b2&amp;type=3#RequestedItemCommon" />
+    <ContentGeneration.Editor.MainWindow.Components.SubWindow name="requestedItem" Sub-Window-Name="??"
+                                                              style="flex-grow: 1;">
         <ui:ScrollView style="flex-grow: 1;">
-            <ui:Button text="Refresh" parse-escape-sequences="true" display-tooltip-when-elided="true" name="refreshButton" style="margin-top: 10px; margin-bottom: 10px;" />
+            <ui:Button text="Refresh" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                       name="refreshButton" style="margin-top: 10px; margin-bottom: 10px;" />
             <ui:VisualElement class="row">
-                <ui:Label tabindex="-1" text="Status:" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-right: 7px;" />
-                <ui:Label tabindex="-1" text="&lt;status&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="status" />
+                <ui:Label tabindex="-1" text="Status:" parse-escape-sequences="true" display-tooltip-when-elided="true"
+                          style="margin-right: 7px;" />
+                <ui:Label tabindex="-1" text="&lt;status&gt;" parse-escape-sequences="true"
+                          display-tooltip-when-elided="true" name="status" />
                 <ui:VisualElement style="flex-grow: 1;" />
-                <ui:Label tabindex="-1" text="Generator:" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-right: 7px;" />
-                <ui:Label tabindex="-1" text="&lt;generator&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="generator" style="color: rgb(0, 241, 255);" />
+                <ui:Label tabindex="-1" text="Generator:" parse-escape-sequences="true"
+                          display-tooltip-when-elided="true" style="margin-right: 7px;" />
+                <ui:Label tabindex="-1" text="&lt;generator&gt;" parse-escape-sequences="true"
+                          display-tooltip-when-elided="true" name="generator" style="color: rgb(0, 241, 255);" />
                 <ui:VisualElement style="flex-grow: 1;" />
                 <ui:VisualElement style="favoriteContainer">
                     <ui:Button name="saveFavorite" text="Save favorite" class="favoriteButton">
@@ -19,16 +29,27 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="errorDetails" class="row" style="flex-direction: row;">
-                <ui:Label tabindex="-1" text="Error details:" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-right: 7px;" />
-                <ui:Label tabindex="-1" text="&lt;error&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="error" style="color: rgb(255, 157, 150);" />
+                <ui:Label tabindex="-1" text="Error details:" parse-escape-sequences="true"
+                          display-tooltip-when-elided="true" style="margin-right: 7px;" />
+                <ui:Label tabindex="-1" text="&lt;error&gt;" parse-escape-sequences="true"
+                          display-tooltip-when-elided="true" name="error" style="color: rgb(255, 157, 150);" />
             </ui:VisualElement>
             <ui:ScrollView mode="Horizontal" name="imagesContainer" />
             <ui:VisualElement name="childrenContainer" />
-            <ui:VisualElement style="margin-bottom: 9px; flex-grow: 1;">
-                <ui:Label tabindex="-1" text="Generator Parameters:" parse-escape-sequences="true" display-tooltip-when-elided="true" />
-                <ui:TextField picking-mode="Ignore" readonly="true" multiline="true" name="generatorParameters" />
+            <ui:VisualElement style="margin-bottom: 9px;" class="row">
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Generator Parameters:" parse-escape-sequences="true"
+                              display-tooltip-when-elided="true" />
+                    <ui:TextField picking-mode="Ignore" readonly="true" multiline="true" name="generatorParameters" class="generatorParametersOrResult" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Generator Result:" parse-escape-sequences="true"
+                              display-tooltip-when-elided="true" />
+                    <ui:TextField picking-mode="Ignore" readonly="true" multiline="true" name="generatorResult" class="generatorParametersOrResult" />
+                </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button name="deleteButton" text="Delete request" style="background-color: rgb(191, 80, 73); color: rgb(255, 255, 255); -unity-font-style: bold; margin-bottom: 14px;" />
+            <ui:Button name="deleteButton" text="Delete request"
+                       style="background-color: rgb(191, 80, 73); color: rgb(255, 255, 255); -unity-font-style: bold; margin-bottom: 14px;" />
         </ui:ScrollView>
     </ContentGeneration.Editor.MainWindow.Components.SubWindow>
 </ui:UXML>

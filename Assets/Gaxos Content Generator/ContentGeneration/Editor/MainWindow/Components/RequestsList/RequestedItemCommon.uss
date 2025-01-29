@@ -2,18 +2,18 @@
     height: 205px;
 }
 
-#generatorParameters {
+.generatorParametersOrResult {
     flex-grow: 0;
     flex-shrink: 1;
     min-height: 100px;
     max-height: 200px;
 }
 
-#generatorParameters TextElement {
+.generatorParametersOrResult TextElement {
     -unity-text-align: upper-left;
 }
 
-#generatorParameters .unity-text-element {
+.generatorParametersOrResult .unity-text-element {
     color: #02e7f4;
 }
 

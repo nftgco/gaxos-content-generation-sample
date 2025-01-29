@@ -40,6 +40,7 @@ namespace ContentGeneration.Editor.MainWindow.Components.RequestsList
         VisualElement errorDetails => this.Q<VisualElement>("errorDetails");
         Label error => this.Q<Label>("error");
         TextField generatorParameters => this.Q<TextField>("generatorParameters");
+        TextField generatorResult => this.Q<TextField>("generatorResult");
         Button refreshButton => this.Q<Button>("refreshButton");
         Button deleteButton => this.Q<Button>("deleteButton");
         ScrollView imagesContainer => this.Q<ScrollView>("imagesContainer");
@@ -118,6 +119,7 @@ namespace ContentGeneration.Editor.MainWindow.Components.RequestsList
                 }
             };
             generatorParameters.SetVerticalScrollerVisibility(ScrollerVisibility.Auto);
+            generatorResult.SetVerticalScrollerVisibility(ScrollerVisibility.Auto);
         }
 
         public void Refresh()
@@ -198,6 +200,7 @@ namespace ContentGeneration.Editor.MainWindow.Components.RequestsList
                              (value.GeneratorError?.Error == null ? "" : $" [{value?.GeneratorError?.Error}]");
 
                 generatorParameters.value = value.GeneratorParameters?.ToString();
+                generatorResult.value = value.GeneratorResult?.ToString();
 
                 imagesContainer.style.display = DisplayStyle.None;
                 if (value is { Status: RequestStatus.Generated, Assets: not null } && showImages)
