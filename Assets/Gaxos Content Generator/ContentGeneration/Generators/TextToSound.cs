@@ -32,6 +32,7 @@ namespace ContentGeneration.Generators
 
         protected override Task ReportGeneration(PublishedAsset asset)
         {
+            PlayerPrefs.DeleteKey(assetUrlPlayerPrefKey);
             return Task.CompletedTask;
         }
     }

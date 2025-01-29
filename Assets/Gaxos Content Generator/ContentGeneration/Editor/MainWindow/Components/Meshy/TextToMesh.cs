@@ -115,7 +115,6 @@ namespace ContentGeneration.Editor.MainWindow.Components.Meshy
 
         Task<string> RequestGeneration(bool estimate)
         {
-            
             var parameters = new MeshyTextToMeshParameters
             {
                 Prompt = prompt.value,
@@ -177,7 +176,7 @@ namespace ContentGeneration.Editor.MainWindow.Components.Meshy
             if (IsValid(false))
             {
                 generateButton.text = "Generate [...]";
-                RequestGeneration(true).ContinueInMainThreadWith(t =>
+                CostEstimation.WillRequestEstimation(() => CostEstimation.WillRequestEstimation(() => RequestGeneration(true))).ContinueInMainThreadWith(t =>
                 {
                     if (t.IsFaulted)
                     {
@@ -185,7 +184,10 @@ namespace ContentGeneration.Editor.MainWindow.Components.Meshy
                         return;
                     }
 
-                    generateButton.text = $"Generate [estimated cost: {t.Result}]";
+                    if(!string.IsNullOrEmpty(t.Result))
+                    {
+                        generateButton.text = $"Generate [estimated cost: {t.Result}]";
+                    }
                 });
             }
         }

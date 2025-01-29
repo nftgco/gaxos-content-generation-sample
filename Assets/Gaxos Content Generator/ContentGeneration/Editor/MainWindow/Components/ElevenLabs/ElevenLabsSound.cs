@@ -164,7 +164,7 @@ namespace ContentGeneration.Editor.MainWindow.Components.ElevenLabs
             if (IsValid(false))
             {
                 generateButton.text = "Generate [...]";
-                RequestGeneration(true).ContinueInMainThreadWith(t =>
+                CostEstimation.WillRequestEstimation(() => RequestGeneration(true)).ContinueInMainThreadWith(t =>
                 {
                     if (t.IsFaulted)
                     {
@@ -172,7 +172,8 @@ namespace ContentGeneration.Editor.MainWindow.Components.ElevenLabs
                         return;
                     }
 
-                    generateButton.text = $"Generate [estimated cost: {t.Result}]";
+                    if(!string.IsNullOrEmpty(t.Result))
+                        generateButton.text = $"Generate [estimated cost: {t.Result}]";
                 });
             }
         }

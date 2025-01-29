@@ -198,7 +198,7 @@ namespace ContentGeneration.Editor.MainWindow.Components.StabilityAI
             if (IsValid(false))
             {
                 generateButton.text = "Generate [...]";
-                RequestGeneration(true).ContinueInMainThreadWith(t =>
+                CostEstimation.WillRequestEstimation(() => RequestGeneration(true)).ContinueInMainThreadWith(t =>
                 {
                     if (t.IsFaulted)
                     {
@@ -206,7 +206,8 @@ namespace ContentGeneration.Editor.MainWindow.Components.StabilityAI
                         return;
                     }
 
-                    generateButton.text = $"Generate [estimated cost: {t.Result}]";
+                    if(!string.IsNullOrEmpty(t.Result))
+                        generateButton.text = $"Generate [estimated cost: {t.Result}]";
                 });
             }
         }

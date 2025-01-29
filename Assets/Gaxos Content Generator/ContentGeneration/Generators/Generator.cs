@@ -115,7 +115,11 @@ namespace ContentGeneration.Generators
             var id = PlayerPrefs.GetString(generationIdPlayerPrefKey);
 
             var result = await ContentGenerationApi.Instance.GetRequest(id);
-            if (await IsRequestGenerated(result))
+            if (result == null)
+            {
+                PlayerPrefs.DeleteKey(generationIdPlayerPrefKey);
+            }
+            else if (await IsRequestGenerated(result))
             {
                 await RequestWasGenerated(id, result);
             }
