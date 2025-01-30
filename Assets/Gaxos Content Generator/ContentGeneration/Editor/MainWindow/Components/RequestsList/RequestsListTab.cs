@@ -102,7 +102,7 @@ namespace ContentGeneration.Editor.MainWindow.Components.RequestsList
 
             listView.columnSortingChanged += Refresh;
             listView.columns["id"].bindCell = (element, index) =>
-                (element as Label)!.text = ContentGenerationStore.Instance.Requests[index].ID.ToString();
+                (element as Label)!.text = ContentGenerationStore.Instance.Requests[index].ID.ToString() + $" - {index}";
             listView.columns["generator"].bindCell = (element, index) =>
                 (element as Label)!.text = ContentGenerationStore.Instance.Requests[index].Generator.ToString();
             listView.columns["timeTaken"].bindCell = (element, index) =>
@@ -153,12 +153,13 @@ namespace ContentGeneration.Editor.MainWindow.Components.RequestsList
                 element.AddToClassList("downloadElement");
 
                 var button = element.Children().FirstOrDefault(c => c is Button) as Button;
-                if (button == null)
+                if (button != null)
                 {
-                    button = new Button();
-                    element.Add(button);
+                    element.Remove(button);
                 }
 
+                button = new Button();
+                element.Add(button);
                 button.RemoveFromClassList("generated");
                 button.RemoveFromClassList("failed");
                 button.RemoveFromClassList("mdel3d");
